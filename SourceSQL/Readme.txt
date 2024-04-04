@@ -1,0 +1,1 @@
+thứ tự chạy file: creat table -> function -> trigger -> stored procedure -> insert data
