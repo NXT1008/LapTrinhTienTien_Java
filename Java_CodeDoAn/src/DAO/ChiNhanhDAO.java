@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DAO;
 import Models.ChiNhanh;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-/**
- *
- * @author WIN 10
- */
+
 public class ChiNhanhDAO {
     Connection conn = null;
     PreparedStatement ps = null;
@@ -44,6 +38,25 @@ public class ChiNhanhDAO {
         return list;
     }
     
+    public List<String> listMaChiNhanh(){
+        List<String> list = new ArrayList<>();
+        String query = "select maChiNhanh from CHINHANH";
+        try {
+            conn = DBConnection.getConnection();
+            
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                list.add(rs.getString(1));
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return list;
+    }
+    
     public ChiNhanh findOne(String maCN){
         ChiNhanh cn;
         String query = "select * from CHINHANH where maChiNhanh = ?";
@@ -65,13 +78,14 @@ public class ChiNhanhDAO {
     }
     
     public boolean insert(ChiNhanh cn){
-        String query = "exec Insert_CHINHANH ? , ? , ?";
+        String query = "exec Insert_CHINHANH ? , ? , ?, ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, cn.getMaChiNhanh());
             ps.setString(2, cn.getTenChiNhanh());
             ps.setString(3, cn.getDiaChi());
+            ps.setString(4, cn.getSoDienThoai());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {
@@ -81,13 +95,14 @@ public class ChiNhanhDAO {
     }
     
     public boolean update(ChiNhanh cn){
-        String query = "exec Update_CHINHANH ? , ? , ? ";
+        String query = "exec Update_CHINHANH ? , ? , ?, ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, cn.getMaChiNhanh());
             ps.setString(2, cn.getTenChiNhanh());
             ps.setString(3, cn.getDiaChi());
+            ps.setString(4, cn.getSoDienThoai());
             ps.executeUpdate();
             conn.close();
         } catch (Exception e) {

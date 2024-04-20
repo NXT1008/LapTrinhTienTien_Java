@@ -1,27 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Models;
 
 import java.util.Date;
 import java.sql.*;
-/**
- *
- * @author WIN 10
- */
+
 public class HoaDon {
 
     private String maHoaDon;
     private Date ngayLapHoaDon;
-    private float tongTien;
+    private String maXe;
+    private long tongTien;
     private String tinhTrang;
     private String maKhachHang;
     private String maNhanVienThucHien;
 
-    public HoaDon(String maHoaDon, Date ngayLapHoaDon, float tongTien, String tinhTrang, String maKhachHang, String maNhanVienThucHien) {
+    public HoaDon(String maHoaDon, Date ngayLapHoaDon, String maXe, long tongTien, String tinhTrang, String maKhachHang, String maNhanVienThucHien) {
         this.maHoaDon = maHoaDon;
         this.ngayLapHoaDon = ngayLapHoaDon;
+        this.maXe = maXe;
         this.tongTien = tongTien;
         this.tinhTrang = tinhTrang;
         this.maKhachHang = maKhachHang;
@@ -31,7 +27,8 @@ public class HoaDon {
     public HoaDon(ResultSet rs) throws SQLException {
         this.maHoaDon = rs.getString("maHoaDon");
         this.ngayLapHoaDon = rs.getDate("ngayLapHoaDon");
-        this.tongTien = rs.getFloat("tongTien");
+        this.maXe = rs.getString("maXe");
+        this.tongTien = rs.getLong("tongTien");
         this.tinhTrang = rs.getString("tinhTrang");
         this.maKhachHang = rs.getString("maKhachHang");
         this.maNhanVienThucHien = rs.getString("maNhanVienThucHien");
@@ -53,11 +50,11 @@ public class HoaDon {
         this.ngayLapHoaDon = ngayLapHoaDon;
     }
 
-    public float getTongTien() {
+    public long getTongTien() {
         return tongTien;
     }
 
-    public void setTongTien(float tongTien) {
+    public void setTongTien(long tongTien) {
         this.tongTien = tongTien;
     }
 
@@ -85,6 +82,14 @@ public class HoaDon {
         this.maNhanVienThucHien = maNhanVienThucHien;
     }
 
+    public String getMaXe() {
+        return maXe;
+    }
+
+    public void setMaXe(String maXe) {
+        this.maXe = maXe;
+    }
+    
     @Override
     public String toString() {
         return "HoaDon{" + "maHoaDon=" + maHoaDon + ", ngayLapHoaDon=" + ngayLapHoaDon + ", tongTien=" + tongTien + ", tinhTrang=" + tinhTrang + ", maKhachHang=" + maKhachHang + ", maNhanVienThucHien=" + maNhanVienThucHien + '}';

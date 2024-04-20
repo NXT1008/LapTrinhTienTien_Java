@@ -2,12 +2,12 @@
 go
 
 -- Thêm dữ liệu cho bảng CHI NHÁNH
-INSERT INTO CHINHANH (maChiNhanh, tenChiNhanh, diaChi)
-VALUES ('CNHN', N'Chi nhánh Hà Nội', N'Số 25, Đường Lê Lợi, Quận Hai Bà Trưng, Hà Nội'),
-       ('CNHCM', N'Chi nhánh Hồ Chí Minh', N'456 Đường B, Quận 2, TP.HCM'),
-       ('CNHUE', N'Chi nhánh Huế', N'555 Đường Hà Khánh, Thành phố Huế'),
-       ('CNCT', N'Chi nhánh Cần Thơ', N'222 Đường Trần Phú, Quận Ninh Kiều, Cần Thơ'),
-       ('CNDN', N'Chi nhánh Đà Nẵng', N' 789 Đường 2/9, Quận Hải Châu, Đà Nẵng');
+INSERT INTO CHINHANH (maChiNhanh, tenChiNhanh, diaChi, soDienThoai)
+VALUES ('CNHN', N'Chi nhánh Hà Nội', N'Số 25, Đường Lê Lợi, Quận Hai Bà Trưng, Hà Nội', '0674536125'),
+       ('CNHCM', N'Chi nhánh Hồ Chí Minh', N'456 Đường B, Quận 2, TP.HCM', '0387562341'),
+       ('CNHUE', N'Chi nhánh Huế', N'555 Đường Hà Khánh, Thành phố Huế', '0784657389'),
+       ('CNCT', N'Chi nhánh Cần Thơ', N'222 Đường Trần Phú, Quận Ninh Kiều, Cần Thơ', '0697812345'),
+       ('CNDN', N'Chi nhánh Đà Nẵng', N' 789 Đường 2/9, Quận Hải Châu, Đà Nẵng', '0794532165');
 go
 
 -- Thêm dữ liệu cho bảng NHÂN VIÊN
@@ -54,14 +54,14 @@ VALUES ('NVHN001', N'Nguyễn Văn An', '123456289012', '1990-01-15', N'Nam', N'
 go
 
 -- Thêm dữ liệu cho bảng TÀI KHOẢN
-INSERT INTO TAIKHOAN (tenDangNhap, matKhau,maNhanVien)
-VALUES ('1', '1', 'NVHN001'),
-	   ('2', '1', 'NVHN002'),
-	   ('3', '1', 'NVHN003'),
-	   ('4', '1', 'NVHN004'),
-	   ('5', '1', 'NVHN005'),
-	   ('6', '1', 'NVHN006'),
-	   ('7', '1', 'NVHN007');
+--INSERT INTO TAIKHOAN (maNhanVien, tenDangNhap, matKhau)
+--VALUES ('1', '1', 'NVHN001'),
+--	   ('2', '1', 'NVHN002'),
+--	   ('3', '1', 'NVHN003'),
+--	   ('4', '1', 'NVHN004'),
+--	   ('5', '1', 'NVHN005'),
+--	   ('6', '1', 'NVHN006'),
+--	   ('7', '1', 'NVHN007');
 go
 -- Thêm dữ liệu cho bảng NHÀ CUNG CẤP
 INSERT INTO NHACUNGCAP (maNhaCungCap, tenNhaCungCap, diaChi, soDienThoai)
@@ -73,150 +73,77 @@ VALUES ('NCC001', N'Công ty Toyota Việt Nam', N'123 Đường X, Quận Y, TP
 go
 
 -- Nhập xe
-INSERT INTO XE (maXe, tenXe, mauSac, giaBan, soChoNgoi, xuatXu, hangXe, loaiXe, phienBanXe, trongLuong,
-             loaiNhienLieu, congSuatDongCo, dungTichDongCo, loaiDongCo, khoangSangGam, 
-			 chieuDai, chieuRong, chieuCao, hinhAnh)
-VALUES ('XE001', 'Mazda CX-5', N'Đen', 1400000, 5, N'Nhật Bản', 'Mazda', 'SUV', 'Grand Touring', 1680,
-        N'Xăng', 225, 1998, N'4 xi-lanh', 195, 
-		179, 72, 167, ''),
-		('XE002', 'Volkswagen Golf', N'Xám', 1250000, 5, N'Đức', 'Volkswagen', 'Hatchback', 'Highline', 1450,
-        N'Xăng', 180, 1395, N'4 xi-lanh', 175, 
-		179, 70, 157, ''),
-		('XE003', 'Subaru Outback', N'Xanh', 1380000, 5, N'Nhật Bản', 'Subaru', 'Crossover', 'Limited', 1700,
-        N'Xăng', 256, 2498, N'6 xi-lanh', 200, 
-		167, 72, 174, ''),
-		('XE004', 'Mercedes-Benz E-Class', N'Bạc', 1500000, 5, N'Đức', 'Mercedes-Benz', 'Sedan', 'E350', 1800,
-        N'Xăng', 292, 2999, N'6 xi-lanh', 188, 
-		146, 73, 155, ''),
-		('XE005', 'BMW X5', N'Đen', 1600000, 5, N'Đức', 'BMW', 'SUV', 'xDrive40i', 2000,
-        N'Xăng', 335, 2998, N'6 xi-lanh', 194, 
-		176, 79, 172, ''),
-		('XE006', 'Audi Q7', N'Trắng', 1550000, 7, N'Đức', 'Audi', 'SUV', 'Premium Plus', 2100,
-        N'Xăng', 335, 2995, N'6 xi-lanh', 200, 
-		174, 77, 169, ''),
-		('XE007', 'Lexus RX', N'Xám', 1450000, 5, N'Nhật Bản', 'Lexus', 'SUV', 'RX350', 1900,
-		N'Xăng', 295, 3456, N'6 xi-lanh', 193, 
-		168, 74, 171, ''),
-		('XE008', 'Volvo XC90', 'Trắng', 1700000, 7, N'Thụy Điển', 'Volvo', 'SUV', 'T8 Inscription', 2150,
-		N'Xăng', 400, 1969, N'4 xi-lanh', 194, 
-		176, 77, 174, ''),
-		('XE009', 'Jeep Grand Cherokee', N'Đỏ', 1480000, 5, N'Mỹ', 'Jeep', 'SUV', 'Limited', 2000,
-        N'Xăng', 360, 3600, '6 xi-lanh', 189, 
-		180, 69, 165, ''),
-		('XE010', 'Tesla Model X', N'Trắng', 1800000, 7, N'Mỹ', 'Tesla', 'SUV', 'Long Range', 2200,
-        N'Điện', 670, 0, N'Điện', 198, 
-		168, 78, 168, '');
+INSERT INTO XE (maXe, tenXe, mauSac, giaBan, xuatXu, hangXe, phienBanXe, trongLuong, congSuatDongCo, loaiDongCo, chieuDai, chieuRong, chieuCao, hinhAnh)
+VALUES 
+	('XE001', 'Toyota Camry', N'Bạc', 850000000, N'Nhật Bản', 'Toyota', '2.0Q', 1530, 178, 'Xăng A2AR-FE', 4885, 1839, 1440, 'https://example.com/xe/camry.jpg'),
+	('XE002', 'Hyundai Santa Fe', N'Trắng', 1240000000, N'Hàn Quốc', 'Hyundai', '3.5L Premium', 1764, 277, 'Xăng Smartstream G3.5 MPI', 4785, 1890, 1720, 'https://example.com/xe/santafe.jpg'),
+	('XE003', 'Ford Everest', N'Đen', 1180000000, N'Mỹ', 'Ford', 'Titanium 2.0L Bi-Turbo', 2136, 210, 'Diesel Bi-Turbo', 4893, 1862, 1838, 'https://example.com/xe/everest.jpg'),
+	('XE004', 'Kia Sorento', N'Xanh', 1059000000, N'Hàn Quốc', 'Kia', '2.5 Signature AWD', 1915, 281, 'Xăng Theta III 2.5L', 4810, 1900, 1700, 'https://example.com/xe/sorento.jpg'),
+	('XE005', 'Mazda CX-8', N'Đỏ', 1249000000, N'Nhật Bản', 'Mazda', 'Premium AWD', 1962, 230, 'Xăng Skyactiv-G 2.5L', 4900, 1840, 1730, 'https://example.com/xe/cx8.jpg'),
+	('XE006', 'Toyota Corolla Altis', N'Đỏ', 746000000, N'Nhật Bản', 'Toyota', '1.8G CVT', 1330, 140, 'Xăng 2ZR-FE', 4630, 1780, 1435, 'https://example.com/xe/corollaaltis.jpg'),
+	('XE007', 'Honda Civic', N'Trắng', 870000000, N'Nhật Bản', 'Honda', 'RS', 1317, 174, 'Xăng 1.5L Turbo', 4678, 1800, 1415, 'https://example.com/xe/civic.jpg'),
+	('XE008', 'Mazda3', N'Xanh', 669000000, N'Nhật Bản', 'Mazda', '1.5L Luxury', 1315, 110, 'Xăng Skyactiv-G 1.5L', 4660, 1795, 1440, 'https://example.com/xe/mazda3.jpg'),
+	('XE009', 'Mitsubishi Xpander', N'Bạc', 620000000, N'Indonesia', 'Mitsubishi', 'AT Premium', 1230, 105, 'Xăng MIVEC 1.5L', 4595, 1750, 1750, 'https://example.com/xe/xpander.jpg'),
+	('XE010', 'Suzuki Ertiga', N'Xám', 499000000, N'Indonesia', 'Suzuki', 'Sport', 1135, 95, 'Xăng K15B 1.5L', 4395, 1735, 1690, 'https://example.com/xe/ertiga.jpg'),
+	('XE011', 'Ford Ranger', N'Đen', 625000000, N'Thái Lan', 'Ford', 'Wildtrak 2.0L Bi-Turbo', 2310, 210, 'Diesel Bi-Turbo', 5362, 1860, 1848, 'https://example.com/xe/ranger.jpg'),
+	('XE012', 'Nissan Navara', N'Trắng', 945000000, N'Thái Lan', 'Nissan', 'VL Pro-4X 2.3L', 2230, 190, 'Diesel Twin-Turbo', 5255, 1850, 1825, 'https://example.com/xe/navara.jpg'),
+	('XE013', 'Mitsubishi Triton', N'Xám', 885000000, N'Thái Lan', 'Mitsubishi', 'Athlete 4x4 AT', 2050, 181, 'Diesel MIVEC 2.4L', 5305, 1815, 1780, 'https://example.com/xe/triton.jpg'),
+	('XE014', 'Toyota Vios', N'Đỏ', 478000000, N'Việt Nam', 'Toyota', 'E CVT', 1100, 107, 'Xăng 2NR-FE', 4410, 1730, 1475, 'https://example.com/xe/vios.jpg'),
+	('XE015', 'Hyundai Accent', N'Xanh', 426000000, N'Việt Nam', 'Hyundai', '1.4 AT', 1128, 100, 'Xăng Kappa 1.4L MPI', 4440, 1729, 1470, 'https://example.com/xe/accent.jpg'),
+	('XE016', 'Mercedes-Benz C-Class', N'Trắng', 1999000000, N'Đức', 'Mercedes-Benz', 'C 200 Avantgarde', 1425, 184, 'Xăng 1.5L Turbo', 4751, 1820, 1438, 'https://example.com/xe/cclass.jpg'),
+	('XE017', 'BMW 3 Series', N'Xanh', 2399000000, N'Đức', 'BMW', '330i M Sport', 1455, 258, 'Xăng 2.0L Turbo', 4709, 1827, 1440, 'https://example.com/xe/3series.jpg'),
+	('XE018', 'Audi A4', N'Đen', 2160000000, N'Đức', 'Audi', '45 TFSI quattro', 1545, 245, 'Xăng 2.0L Turbo', 4726, 1842, 1427, 'https://example.com/xe/a4.jpg'),
+	('XE019', 'Lexus ES', N'Nâu', 2890000000, N'Nhật Bản', 'Lexus', 'ES 250 Luxury', 1685, 204, 'Xăng 2.5L Hybrid', 4975, 1865, 1440, 'https://example.com/xe/es.jpg'),
+	('XE020', 'Porsche Panamera', N'Bạc', 5460000000, N'Đức', 'Porsche', '4S E-Hybrid', 2185, 560, 'Hybrid V6 2.9L Turbo', 5049, 1937, 1423, 'https://example.com/xe/panamera.jpg');
+
 go
 
-INSERT INTO PHIEUNHAP (maNhaCungCap, maChiNhanh, ngayNhap)
-VALUES ('NCC001', 'CNHN', '2023-10-01')
-INSERT INTO PHIEUNHAP (maNhaCungCap, maChiNhanh, ngayNhap)
-VALUES ('NCC002', 'CNHCM', '2023-10-02')
-INSERT INTO PHIEUNHAP (maNhaCungCap, maChiNhanh, ngayNhap)
-VALUES ('NCC003', 'CNHN', '2023-10-03')
-INSERT INTO PHIEUNHAP (maNhaCungCap, maChiNhanh, ngayNhap)
-VALUES ('NCC004', 'CNHUE', '2023-10-04')
-INSERT INTO PHIEUNHAP (maNhaCungCap, maChiNhanh, ngayNhap)
-VALUES ('NCC005', 'CNDN', '2023-10-05')
+INSERT INTO PHIEUNHAP (maPhieuNhap, maXe, ngayNhap, giaNhap, soLuong, maNhaCungCap, maChiNhanh)
+VALUES ('PN001', 'XE001', '2023-10-01', 830000000, 5, 'NCC001', 'CNHN'),
+		('PN002', 'XE002', '2023-10-01', 1240000000, 5, 'NCC002', 'CNHCM'),
+		('PN003', 'XE003', '2023-10-01', 1180000000, 5,'NCC003', 'CNHN'),
+		('PN004', 'XE004', '2023-10-01', 1059000000, 5,'NCC004', 'CNHUE'),
+		('PN005', 'XE005', '2023-10-01', 1249000000, 5,'NCC005', 'CNDN');
 go
 
-INSERT INTO CHITIETPHIEUNHAPXE (maXe, maPhieuNhap, giaNhap, soLuong)
-VALUES ('XE001', 'PN001', 1200000, 5)
-INSERT INTO CHITIETPHIEUNHAPXE (maXe, maPhieuNhap, giaNhap, soLuong)
-VALUES ('XE001', 'PN001', 1300000, 6)
-INSERT INTO CHITIETPHIEUNHAPXE (maXe, maPhieuNhap, giaNhap, soLuong)
-VALUES ('XE002', 'PN002', 1100000, 2)
-INSERT INTO CHITIETPHIEUNHAPXE (maXe, maPhieuNhap, giaNhap, soLuong)
-VALUES ('XE002', 'PN002', 1400000, 1)
-INSERT INTO CHITIETPHIEUNHAPXE (maXe, maPhieuNhap, giaNhap, soLuong)
-VALUES ('XE003', 'PN003', 1250000, 6)
-INSERT INTO CHITIETPHIEUNHAPXE (maXe, maPhieuNhap, giaNhap, soLuong)
-VALUES ('XE003', 'PN003', 1350000, 9)
-INSERT INTO CHITIETPHIEUNHAPXE (maXe, maPhieuNhap, giaNhap, soLuong)
-VALUES ('XE004', 'PN004', 1150000, 10)
-INSERT INTO CHITIETPHIEUNHAPXE (maXe, maPhieuNhap, giaNhap, soLuong)
-VALUES ('XE004', 'PN004', 1500000, 11)
-INSERT INTO CHITIETPHIEUNHAPXE (maXe, maPhieuNhap, giaNhap, soLuong)
-VALUES ('XE005', 'PN005', 1280000, 13)
-INSERT INTO CHITIETPHIEUNHAPXE (maXe, maPhieuNhap, giaNhap, soLuong)
-VALUES ('XE005', 'PN005', 1380000, 4)
+INSERT INTO KHACHHANG (maKhachHang, hoTenKhachHang, ngaySinh, gioiTinh, CCCD, diaChi, soDienThoai)
+VALUES ('KH001', N'Đặng Gia Thuận', '2000-01-15', N'Nam', '123456789012', N'Hà Nội', '0987654321'),
+		('KH002',N'Nguyễn Thị Lan Anh', '1995-03-20', N'Nữ', '234567890123', N'Hồ Chí Minh', '0901234567'),
+		('KH003',N'Nguyễn Việt Khoa', '1988-05-10', N'Nam', '345678901234', N'Đà Nẵng', '0971234567'),
+		('KH004',N'Phạm Thị Phương Nghi', '1992-09-08', N'Nữ', '456789012345', N'Hà Nội', '0961234567'),
+		('KH005',N'Nguyễn Xuân Thể', '1985-12-25', N'Nam', '567890123456', N'Hồ Chí Minh', '0911234567'),
+		('KH006',N'Nguyễn Hồ Thiên Thanh', '1997-06-30', N'Nữ', '678901234567', N'Đà Nẵng', '0987123456'),
+		('KH007',N'Sú Minh Luân', '1990-03-17', N'Nam', '789012345678', N'Hà Nội', '0921234567'),
+		('KH008',N'Hoàng Võ Ngọc Nguyên', '1999-08-12', N'Nam', '901234567890', N'Đà Nẵng', '0941234567'),
+		('KH009', N'Nguyễn Thị Tuyết', '1999-07-12', N'Nữ', '901234567890', N'Long An', '0941234567');
 go
 
-
-INSERT INTO KHACHHANG (hoTenKhachHang, ngaySinh, gioiTinh, CCCD, diaChi, soDienThoai)
-VALUES (N'Đặng Gia Thuận', '2000-01-15', N'Nam', '123456789012', N'Hà Nội', '0987654321')
-INSERT INTO KHACHHANG (hoTenKhachHang, ngaySinh, gioiTinh, CCCD, diaChi, soDienThoai)
-VALUES (N'Nguyễn Thị Lan Anh', '1995-03-20', N'Nữ', '234567890123', N'Hồ Chí Minh', '0901234567')
-INSERT INTO KHACHHANG (hoTenKhachHang, ngaySinh, gioiTinh, CCCD, diaChi, soDienThoai)
-VALUES (N'Nguyễn Việt Khoa', '1988-05-10', N'Nam', '345678901234', N'Đà Nẵng', '0971234567')
-INSERT INTO KHACHHANG (hoTenKhachHang, ngaySinh, gioiTinh, CCCD, diaChi, soDienThoai)
-VALUES (N'Phạm Thị Phương Nghi', '1992-09-08', N'Nữ', '456789012345', N'Hà Nội', '0961234567')
-INSERT INTO KHACHHANG (hoTenKhachHang, ngaySinh, gioiTinh, CCCD, diaChi, soDienThoai)
-VALUES (N'Nguyễn Xuân Thể', '1985-12-25', N'Nam', '567890123456', N'Hồ Chí Minh', '0911234567')
-INSERT INTO KHACHHANG (hoTenKhachHang, ngaySinh, gioiTinh, CCCD, diaChi, soDienThoai)
-VALUES (N'Nguyễn Hồ Thiên Thanh', '1997-06-30', N'Nữ', '678901234567', N'Đà Nẵng', '0987123456')
-INSERT INTO KHACHHANG (hoTenKhachHang, ngaySinh, gioiTinh, CCCD, diaChi, soDienThoai)
-VALUES (N'Sú Minh Luân', '1990-03-17', N'Nam', '789012345678', N'Hà Nội', '0921234567')
-INSERT INTO KHACHHANG (hoTenKhachHang, ngaySinh, gioiTinh, CCCD, diaChi, soDienThoai)
-VALUES (N'Hoàng Võ Ngọc Nguyên', '1999-08-12', N'Nam', '901234567890', N'Đà Nẵng', '0941234567')
+INSERT INTO HOADON (maHoaDon, ngayLapHoaDon, maXe, tongTien, tinhTrang, maKhachHang, maNhanVienThucHien)
+VALUES ('HD001', '2023-10-01', 'XE001', 1250000, N'Đã thanh toán', 'KH001', 'NVHN001'),
+		('HD002', '2023-10-01', 'XE002', 1250000, N'Đã thanh toán', 'KH002', 'NVHN002'),
+		('HD003', '2023-10-01', 'XE003', 1250000, N'Đã thanh toán', 'KH003', 'NVHN003'),
+		('HD004', '2023-10-01', 'XE004', 1250000, N'Đã thanh toán', 'KH004', 'NVHN004'),
+		('HD005', '2023-10-01', 'XE005', 1250000, N'Đã thanh toán', 'KH005', 'NVHN005');
 go
 
-INSERT INTO HOADON (maKhachHang, maNhanVienThucHien, tongTien, tinhTrang)
-VALUES ('KH001', 'NVHN004', 1250000, N'Chưa thanh toán')
-INSERT INTO HOADON (maKhachHang, maNhanVienThucHien, tongTien, tinhTrang)
-VALUES ('KH002', 'NVHN004', 1350000, N'Chưa thanh toán')
-INSERT INTO HOADON (maKhachHang, maNhanVienThucHien, tongTien, tinhTrang)
-VALUES ('KH003', 'NVHN004', 1150000, N'Chưa thanh toán')
-INSERT INTO HOADON (maKhachHang, maNhanVienThucHien, tongTien, tinhTrang)
-VALUES ('KH004', 'NVHN004', 1400000, N'Chưa thanh toán')
-INSERT INTO HOADON (maKhachHang, maNhanVienThucHien, tongTien, tinhTrang)
-VALUES ('KH005', 'NVHN004', 1200000, N'Chưa thanh toán')
+INSERT INTO DICHVUBAODUONG (maBaoDuong, tenBaoDuong, loaiBaoDuong, phiBaoDuong)
+VALUES ('DVBD001', N'Bảo dưỡng định kỳ', N'Định kỳ 5.000km', 200000),
+		('DVBD002', N'Bảo dưỡng định kỳ', N'Định kỳ 10.000km', 300000),
+		('DVBD003', N'Thay dầu máy', N'Thay dầu máy', 150000),
+		('DVBD004', N'Thay lọc gió', N'Thay lọc gió', 100000),
+		('DVBD005', N'Kiểm tra phanh', N'Kiểm tra phanh', 120000),
+		('DVBD006', N'Điều chỉnh lốp', N'Điều chỉnh lốp', 80000),
+		('DVBD007', N'Rửa xe', N'Rửa xe', 50000),
+		('DVBD008', N'Thay bugi', N'Thay bugi', 70000),
+		('DVBD009', N'Kiểm tra hệ thống điện', N'Kiểm tra hệ thống điện', 90000),
+		('DVBD010', N'Điều chỉnh đèn', N'Điều chỉnh đèn', 60000);
 go
 
-INSERT INTO CHITIETHOADONXE (maHoaDon, maXe, ngayNhanXe, soTienDaTra, phiDangKyBienSo, phiDangKiem, phiTruocBa, phiBaoHiemTrachNhiemDanSu, phiSuDungDuongBo)
-VALUES ('HD001', 'XE001', '2023-10-01', 1250000, 100, 50, 30, 40, 20)
-INSERT INTO CHITIETHOADONXE (maHoaDon, maXe, ngayNhanXe, soTienDaTra, phiDangKyBienSo, phiDangKiem, phiTruocBa, phiBaoHiemTrachNhiemDanSu, phiSuDungDuongBo)
-VALUES       ('HD002', 'XE002', '2023-10-02', 1350000, 110, 55, 35, 45, 25)
-INSERT INTO CHITIETHOADONXE (maHoaDon, maXe, ngayNhanXe, soTienDaTra, phiDangKyBienSo, phiDangKiem, phiTruocBa, phiBaoHiemTrachNhiemDanSu, phiSuDungDuongBo)
-VALUES       ('HD003', 'XE001', '2023-10-03', 1150000, 90, 45, 25, 35, 15)
-INSERT INTO CHITIETHOADONXE (maHoaDon, maXe, ngayNhanXe, soTienDaTra, phiDangKyBienSo, phiDangKiem, phiTruocBa, phiBaoHiemTrachNhiemDanSu, phiSuDungDuongBo)
-VALUES       ('HD004', 'XE001', '2023-10-04', 1400000, 120, 60, 40, 50, 30)
-INSERT INTO CHITIETHOADONXE (maHoaDon, maXe, ngayNhanXe, soTienDaTra, phiDangKyBienSo, phiDangKiem, phiTruocBa, phiBaoHiemTrachNhiemDanSu, phiSuDungDuongBo)
-VALUES       ('HD005', 'XE001', '2023-10-05', 1200000, 105, 52, 32, 42, 22)
+INSERT INTO PHIEUBAODUONG (maPhieuBaoDuong, maBaoDuong, ngayLapPhieu, tongTien, maKhachHang, maNhanVienThucHien)
+VALUES ('PBD001', 'DVBD003', '2023-10-01', 150000, 'KH001', 'NVHN007'),
+		('PBD002', 'DVBD003', '2023-10-01', 150000, 'KH002', 'NVHN007')
 go
 
-INSERT INTO DICHVUBAODUONG (tenBaoDuong, loaiBaoDuong, phiBaoDuong)
-VALUES (N'Bảo dưỡng định kỳ', N'Định kỳ 5.000km', 200000)
-INSERT INTO DICHVUBAODUONG (tenBaoDuong, loaiBaoDuong, phiBaoDuong)
-VALUES       (N'Bảo dưỡng định kỳ', N'Định kỳ 10.000km', 300000)
-INSERT INTO DICHVUBAODUONG (tenBaoDuong, loaiBaoDuong, phiBaoDuong)
-VALUES      (N'Thay dầu máy', N'Thay dầu máy', 150000)
-INSERT INTO DICHVUBAODUONG (tenBaoDuong, loaiBaoDuong, phiBaoDuong)
-VALUES       (N'Thay lọc gió', N'Thay lọc gió', 100000)
-INSERT INTO DICHVUBAODUONG (tenBaoDuong, loaiBaoDuong, phiBaoDuong)
-VALUES       (N'Kiểm tra phanh', N'Kiểm tra phanh', 120000)
-INSERT INTO DICHVUBAODUONG (tenBaoDuong, loaiBaoDuong, phiBaoDuong)
-VALUES       (N'Điều chỉnh lốp', N'Điều chỉnh lốp', 80000)
-INSERT INTO DICHVUBAODUONG (tenBaoDuong, loaiBaoDuong, phiBaoDuong)
-VALUES       (N'Rửa xe', N'Rửa xe', 50000)
-INSERT INTO DICHVUBAODUONG (tenBaoDuong, loaiBaoDuong, phiBaoDuong)
-VALUES       (N'Thay bugi', N'Thay bugi', 70000)
-INSERT INTO DICHVUBAODUONG (tenBaoDuong, loaiBaoDuong, phiBaoDuong)
-VALUES       (N'Kiểm tra hệ thống điện', N'Kiểm tra hệ thống điện', 90000)
-INSERT INTO DICHVUBAODUONG (tenBaoDuong, loaiBaoDuong, phiBaoDuong)
-VALUES       (N'Điều chỉnh đèn', N'Điều chỉnh đèn', 60000)
-go
-
-INSERT INTO PHIEUBAODUONG (maKhachHang, maNhanVienThucHien, tongTien)
-VALUES ('KH001', 'NVHN007', 150000)
-INSERT INTO PHIEUBAODUONG (maKhachHang, maNhanVienThucHien, tongTien)
-VALUES       ('KH002', 'NVHN007', 150000)
-go
-
-INSERT INTO CHITIETPHIEUBAODUONG(maBaoDuong, maPhieuBaoDuong, thanhTien)
-VALUES ('DVBD003', 'PBD001', 150000)
-INSERT INTO CHITIETPHIEUBAODUONG(maBaoDuong, maPhieuBaoDuong, thanhTien)
-VALUES       ('DVBD003', 'PBD002', 150000)
 
 
 select * from CHINHANH
@@ -225,14 +152,84 @@ select * from TAIKHOAN
 select * from NHACUNGCAP
 select * from XE
 select * from PHIEUNHAP
-select * from CHITIETPHIEUNHAPXE
 select * from KHACHHANG
 select * from HOADON
-select * from CHITIETHOADONXE
 select * from DICHVUBAODUONG
 select * from PHIEUBAODUONG
-select * from CHITIETPHIEUBAODUONG
 select * from KHOXE
 
 -- C:\aDrop_Box\Job\Study_21110927\2023-2024\Ki_1\Winform\CuoiKy\DBMS_CodeDoAn\Image
 update XE set hinhAnh = 'C:\aDrop_Box\Job\Study_21110927\2023-2024\Ki_1\Winform\CuoiKy\DBMS_CodeDoAn\Image\New_Toyota_Corolla_Cross_already_kitted_out_in_subtle_accessories__-_CAR_Magazine-removebg-preview.png'
+
+----- insert nhiều hóa đơn
+--begin  tran
+--DECLARE @startDate DATE = '2024-01-01';
+--DECLARE @endDate DATE = '2024-12-31';
+--WHILE @startDate <= @endDate
+--BEGIN
+--    INSERT INTO HOADON (ngayLapHoaDon, tongTien, maKhachHang, maNhanVienThucHien)
+--    VALUES 
+--        (@startDate,
+--         ROUND(RAND() * 10000000 + 1000000, -3), -- Giá trị tổng tiền được tạo ngẫu nhiên từ 1 triệu đến 10 triệu
+--         'KH00' + CONVERT(NVARCHAR(2), CAST(RAND() * 9 + 1 AS INT)),
+--         'NVHN00' + CONVERT(NVARCHAR(2), CAST(RAND() * 7 + 1 AS INT)))
+--    SET @startDate = DATEADD(DAY, 5, @startDate);
+--END;
+--rollback
+----update HOADON set tinhTrang = N'Đã Thanh Toán'
+
+
+---- insert nhiều phiếu nhập
+--begin  tran
+--DECLARE @startDatePhieuNhap DATE = '2024-01-01';
+--DECLARE @endDatePhieuNhap DATE = '2024-12-31';
+--DECLARE @maChiNhanh nvarchar(50);
+--DECLARE @maNhaCC nvarchar(50);
+--WHILE @startDatePhieuNhap <= @endDatePhieuNhap
+--BEGIN
+--	set @maChiNhanh = (select top 1 maChiNhanh from CHINHANH ORDER BY NEWID())
+--	set @maNhaCC = (select top 1 maNhaCungCap from NHACUNGCAP ORDER BY NEWID())
+
+--    INSERT INTO PHIEUNHAP(ngayNhap, maNhaCungCap, maChiNhanh)
+--    VALUES 
+--        (@startDatePhieuNhap,
+--         @maNhaCC, -- Giá trị tổng tiền được tạo ngẫu nhiên từ 1 triệu đến 10 triệu
+--         @maChiNhanh)
+--    SET @startDatePhieuNhap = DATEADD(DAY, 5, @startDatePhieuNhap);
+--END;
+--rollback
+
+---- Insert nhiều CHITIETPHIEUNHAPXE
+--begin  tran
+--DECLARE @cnt int = 1;
+--DECLARE @maXe nvarchar(50), @maPhieuNhap nvarchar(50);
+--DECLARE @giaNhap bigint;
+--WHILE @cnt <= 100
+--BEGIN
+--	set @maXe = (select top 1 maXe from XE ORDER BY NEWID())
+--	set @maPhieuNhap = (select top 1 maPhieuNhap from PHIEUNHAP ORDER BY NEWID())
+--	set @giaNhap = (select (giaBan + 20000000) from XE where maXe = @maXe)
+
+--	insert into CHITIETPHIEUNHAPXE(maXe, maPhieuNhap, giaNhap, soLuong)
+--	values
+--	(@maXe, @maPhieuNhap, @giaNhap, RAND() * 9 + 1);
+
+--	set @cnt = @cnt + 1;
+--END;
+--rollback
+
+
+---- Truy vấn lấy dữ liệu tạo biểu đồ
+--begin tran
+--SELECT FORMAT(ngayLapHoaDon, 'MM/yyyy') AS MonthYear, Sum(tongTien) AS TotalHoaDon 
+--FROM HOADON 
+--GROUP BY FORMAT(ngayLapHoaDon, 'MM/yyyy')
+--ORDER BY MIN(ngayLapHoaDon) DESC
+
+--select FORMAT(ngayNhap, 'MM/yyyy') as MonthYear, Sum(giaNhap * soLuong) as TotalPhieuNhap 
+--from PHIEUNHAP pn 
+--inner join CHITIETPHIEUNHAPXE cttpnx
+--on pn.maPhieuNhap = cttpnx.maPhieuNhap
+--GROUP BY FORMAT(ngayNhap, 'MM/yyyy')
+--ORDER BY MIN(ngayNhap) DESC
+--rollback

@@ -25,6 +25,10 @@ public class HoaDonService {
         return HoaDonDAO.getInstance().danhSachHoaDon();
     }
     
+    public HoaDon findOne(String maHD){
+        return HoaDonDAO.getInstance().findOne(maHD);
+    }
+    
     public boolean insert(HoaDon model){
         return HoaDonDAO.getInstance().insert(model);
     }

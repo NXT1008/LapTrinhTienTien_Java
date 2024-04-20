@@ -23,6 +23,14 @@ public class NhaCungCapService {
         return NhaCungCapDAO.getInstance().danhSachNhaCungCap();
     }
     
+    public List<String> listMaNhaCungCap(){
+        return NhaCungCapDAO.getInstance().listMaNhaCungCap();
+    }
+    
+    public NhaCungCap findOne(String maNCC){
+        return NhaCungCapDAO.getInstance().findOne(maNCC);
+    }
+    
     public boolean insert(NhaCungCap model){
         return NhaCungCapDAO.getInstance().insert(model);
     }

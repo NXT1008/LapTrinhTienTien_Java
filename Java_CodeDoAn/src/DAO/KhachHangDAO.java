@@ -29,6 +29,24 @@ public class KhachHangDAO {
         return Instance;
     }
     
+    public List<String> listMaKhachHang(){
+        List<String> list = new ArrayList<>();
+        String query = "select maKhachHang from KHACHHANG";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                list.add(rs.getString(1));
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return list;
+    }
+    
     public List<KhachHang> danhSachKhachHang(){
         List<KhachHang> list = new ArrayList<>();
         String query = "exec List_KhachHang";
@@ -46,6 +64,26 @@ public class KhachHangDAO {
         }
         
         return list;
+    }
+    
+    public KhachHang findOne(String maKH){
+        KhachHang kh;
+        String query = "select * from KHACHHANG where maKhachHang = ?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, maKH);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                kh = new KhachHang(rs);
+                return kh;
+            }
+            
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        return null;
     }
     
     public boolean insert(KhachHang model){

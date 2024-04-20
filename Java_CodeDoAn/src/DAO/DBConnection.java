@@ -5,6 +5,7 @@
 package DAO;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -24,6 +25,17 @@ public class DBConnection {
             + dbName + ";user=" + userID + ";password=" + password + ";encrypt=false;";
         Connection conn = DriverManager.getConnection(url);
         return conn;
+    }
+    
+    public static java.sql.Date convertStringToDate(String date){
+        java.sql.Date sqlDate = null;
+        try {
+            Date d = (Date) new SimpleDateFormat("dd/MM/yyyy").parse(date);
+            sqlDate = new java.sql.Date(d.getTime());
+        } catch (Exception e) {
+            
+        }
+        return sqlDate;
     }
 
 }

@@ -27,6 +27,14 @@ public class ChiNhanhService {
         return ChiNhanhDAO.getInstance().danhSachChiNhanh();
     }
     
+    public List<String> listMaChiNhanh(){
+        return ChiNhanhDAO.getInstance().listMaChiNhanh();
+    }
+    
+    public ChiNhanh findOne(String macn){
+        return ChiNhanhDAO.getInstance().findOne(macn);
+    }
+    
     public boolean insert(ChiNhanh cn){
         return ChiNhanhDAO.getInstance().insert(cn);
     }

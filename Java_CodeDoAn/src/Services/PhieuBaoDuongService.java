@@ -23,6 +23,10 @@ public class PhieuBaoDuongService {
         return PhieuBaoDuongDAO.getInstance().danhSachPhieuBaoDuong();
     }
     
+    public PhieuBaoDuong findOne(String maPBD){
+        return PhieuBaoDuongDAO.getInstance().findOne(maPBD);
+    }
+    
     public boolean insert(PhieuBaoDuong model){
         return PhieuBaoDuongDAO.getInstance().insert(model);
     }

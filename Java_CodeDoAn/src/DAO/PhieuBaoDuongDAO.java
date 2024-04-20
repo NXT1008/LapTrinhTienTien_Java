@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DAO;
 
 import Models.PhieuBaoDuong;
@@ -12,10 +9,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
-/**
- *
- * @author WIN 10
- */
+
 public class PhieuBaoDuongDAO {
     Connection conn = null;
     PreparedStatement ps = null;
@@ -48,15 +42,36 @@ public class PhieuBaoDuongDAO {
         return list;
     }
     
-    public boolean insert(PhieuBaoDuong model){
-        String query = "exec Insert_PHIEUBAODUONG ?,?,?,?";
+    public PhieuBaoDuong findOne(String maPBD){
+        PhieuBaoDuong pbd;
+        String query = "select * from PHIEUBAODUONG where maPhieuBaoDuong = ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setDate(1, (Date) model.getNgayLapPhieu());
-            ps.setFloat(2, model.getTongTien());
-            ps.setString(3, model.getMaKhachHang());
-            ps.setString(4, model.getMaNhanVienThucHien());
+            ps.setString(1, maPBD);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                pbd = new PhieuBaoDuong(rs);
+                return pbd;
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return null;
+    }
+    
+    public boolean insert(PhieuBaoDuong model){
+        String query = "exec Insert_PHIEUBAODUONG ?,?,?,?,?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, model.getMaBaoDuong());
+            ps.setDate(2, (Date) model.getNgayLapPhieu());
+            ps.setLong(3, model.getTongTien());
+            ps.setString(4, model.getMaKhachHang());
+            ps.setString(5, model.getMaNhanVienThucHien());
             ps.executeUpdate();
             conn.close();
             return true;
@@ -66,13 +81,13 @@ public class PhieuBaoDuongDAO {
     }
     
     public boolean update(PhieuBaoDuong model){
-        String query = "exec Update_PHIEUBAODUONG ?,?,?,?,?";
+        String query = "exec Update_PHIEUBAODUONG ?,?,?,?,?,?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, model.getMaPhieuBaoDuong());
             ps.setDate(2, (Date) model.getNgayLapPhieu());
-            ps.setFloat(3, model.getTongTien());
+            ps.setLong(3, model.getTongTien());
             ps.setString(4, model.getMaKhachHang());
             ps.setString(5, model.getMaNhanVienThucHien());
             ps.executeUpdate();

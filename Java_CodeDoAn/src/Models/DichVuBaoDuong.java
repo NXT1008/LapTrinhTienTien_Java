@@ -13,13 +13,21 @@ public class DichVuBaoDuong {
     private String maBaoDuong;
     private String tenBaoDuong;
     private String loaiBaoDuong;
-    private float phiBaoDuong;
+    private long phiBaoDuong;
 
+    public DichVuBaoDuong(String maBaoDuong, String tenBaoDuong, String loaiBaoDuong, long phiBaoDuong) {
+        this.maBaoDuong = maBaoDuong;
+        this.tenBaoDuong = tenBaoDuong;
+        this.loaiBaoDuong = loaiBaoDuong;
+        this.phiBaoDuong = phiBaoDuong;
+    }
+
+    
     public DichVuBaoDuong(ResultSet resultSet) throws SQLException {
         this.maBaoDuong = resultSet.getString("maBaoDuong");
         this.tenBaoDuong = resultSet.getString("tenBaoDuong");
         this.loaiBaoDuong = resultSet.getString("loaiBaoDuong");
-        this.phiBaoDuong = resultSet.getFloat("phiBaoDuong");
+        this.phiBaoDuong = resultSet.getLong("phiBaoDuong");
     }
     
     public String getMaBaoDuong() {
@@ -46,11 +54,11 @@ public class DichVuBaoDuong {
         this.loaiBaoDuong = loaiBaoDuong;
     }
 
-    public float getPhiBaoDuong() {
+    public long getPhiBaoDuong() {
         return phiBaoDuong;
     }
 
-    public void setPhiBaoDuong(float phiBaoDuong) {
+    public void setPhiBaoDuong(long phiBaoDuong) {
         this.phiBaoDuong = phiBaoDuong;
     }
 

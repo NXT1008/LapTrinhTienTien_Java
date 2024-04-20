@@ -30,7 +30,7 @@ public class XeDAO {
     
     public List<Xe> danhSachXe(){
         List<Xe> list = new ArrayList<>();
-        String query = "";
+        String query = "select * from XE";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -47,29 +47,62 @@ public class XeDAO {
         return list;
     }
     
+    public List<String> listMaXe(){
+        List<String> list = new ArrayList<>();
+        String query = "select maXe from XE";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                list.add(rs.getString("maXe"));
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return list;
+    }
+    
+    public Xe findOne(String maXe){
+        Xe xe;
+        String query = "select * from XE where maXe = ?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, maXe);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                xe = new Xe(rs);
+                return xe;
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return null;
+    }
+    
     public boolean insert(Xe model){
-        String query = "exec Insert_XE ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+        String query = "exec Insert_XE ?,?,?,?,?,?,?,?,?,?,?,?,?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, model.getTenXe());
             ps.setString(2, model.getMauSac());
-            ps.setFloat(3, model.getGiaBan());
-            ps.setInt(4, model.getSoChoNgoi());
-            ps.setString(5, model.getXuatXu());
-            ps.setString(6, model.getHangXe());
-            ps.setString(7, model.getLoaiXe());
-            ps.setString(8, model.getPhienBanXe());
-            ps.setInt(9, model.getTrongLuong());
-            ps.setString(10, model.getLoaiNhienLieu());
-            ps.setInt(11, model.getCongSuatDongCo());
-            ps.setInt(12, model.getDungTichDongCo());
-            ps.setString(13, model.getLoaiDongCo());
-            ps.setInt(14, model.getKhoangSangGam());
-            ps.setInt(15, model.getChieuDai());
-            ps.setInt(16, model.getChieuRong());
-            ps.setInt(17, model.getChieuCao());
-            ps.setString(18, model.getHinhAnh());
+            ps.setLong(3, model.getGiaBan());
+            ps.setString(4, model.getXuatXu());
+            ps.setString(5, model.getHangXe());
+            ps.setString(6, model.getPhienBanXe());
+            ps.setInt(7, model.getTrongLuong());
+            ps.setInt(8, model.getCongSuatDongCo());
+            ps.setString(9, model.getLoaiDongCo());
+            ps.setInt(10, model.getChieuDai());
+            ps.setInt(11, model.getChieuRong());
+            ps.setInt(12, model.getChieuCao());
+            ps.setBytes(13, model.getHinhAnh());
             ps.executeUpdate();
             conn.close();
             return true;
@@ -79,29 +112,24 @@ public class XeDAO {
     }
     
     public boolean update(Xe model){
-        String query = "exec Update_XE ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+        String query = "exec Update_XE ?,?,?,?,?,?,?,?,?,?,?,?,?,?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, model.getMaXe());
             ps.setString(2, model.getTenXe());
             ps.setString(3, model.getMauSac());
-            ps.setFloat(4, model.getGiaBan());
-            ps.setInt(5, model.getSoChoNgoi());
-            ps.setString(6, model.getXuatXu());
-            ps.setString(7, model.getHangXe());
-            ps.setString(8, model.getLoaiXe());
-            ps.setString(9, model.getPhienBanXe());
-            ps.setInt(10, model.getTrongLuong());
-            ps.setString(11, model.getLoaiNhienLieu());
-            ps.setInt(12, model.getCongSuatDongCo());
-            ps.setInt(13, model.getDungTichDongCo());
-            ps.setString(14, model.getLoaiDongCo());
-            ps.setInt(15, model.getKhoangSangGam());
-            ps.setInt(16, model.getChieuDai());
-            ps.setInt(17, model.getChieuRong());
-            ps.setInt(18, model.getChieuCao());
-            ps.setString(19, model.getHinhAnh());
+            ps.setLong(4, model.getGiaBan());
+            ps.setString(5, model.getXuatXu());
+            ps.setString(6, model.getHangXe());
+            ps.setString(7, model.getPhienBanXe());
+            ps.setInt(8, model.getTrongLuong());
+            ps.setInt(9, model.getCongSuatDongCo());
+            ps.setString(10, model.getLoaiDongCo());
+            ps.setInt(11, model.getChieuDai());
+            ps.setInt(12, model.getChieuRong());
+            ps.setInt(13, model.getChieuCao());
+            ps.setBytes(14, model.getHinhAnh());
             ps.executeUpdate();
             conn.close();
             return true;
@@ -123,4 +151,5 @@ public class XeDAO {
         }
         return false;
     }
+    
 }

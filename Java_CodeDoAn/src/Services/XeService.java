@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Services;
 import Models.Xe;
 import DAO.XeDAO;
 import java.util.List;
-/**
- *
- * @author WIN 10
- */
+
 public class XeService {
     private static XeService instance;
 
@@ -21,6 +15,14 @@ public class XeService {
     
     public List<Xe> danhSachXe(){
         return XeDAO.getInstance().danhSachXe();
+    }
+    
+    public List<String> listMaXe(){
+        return XeDAO.getInstance().listMaXe();
+    }
+    
+    public Xe findOne(String maXe){
+        return XeDAO.getInstance().findOne(maXe);
     }
     
     public boolean insert(Xe model){

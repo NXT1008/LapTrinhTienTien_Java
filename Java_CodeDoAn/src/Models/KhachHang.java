@@ -20,6 +20,22 @@ public class KhachHang {
     private String diaChi;
     private String soDienThoai;
 
+    public KhachHang() {
+    }
+
+    
+    public KhachHang(String maKhachHang, String hoTenKhachHang, Date ngaySinh, String gioiTinh, String cCCD, String diaChi, String soDienThoai) {
+        this.maKhachHang = maKhachHang;
+        this.hoTenKhachHang = hoTenKhachHang;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.cCCD = cCCD;
+        this.diaChi = diaChi;
+        this.soDienThoai = soDienThoai;
+    }
+
+    
+    
     public KhachHang(ResultSet resultSet) throws SQLException {
         this.maKhachHang = resultSet.getString("maKhachHang");
         this.hoTenKhachHang = resultSet.getString("hoTenKhachHang");

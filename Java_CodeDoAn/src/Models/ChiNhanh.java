@@ -13,21 +13,24 @@ public class ChiNhanh {
     private String maChiNhanh;
     private String tenChiNhanh;
     private String diaChi;
+    private String soDienThoai;
 
     public ChiNhanh() {
     }
 
-    public ChiNhanh(String maChiNhanh, String tenChiNhanh, String diaChi) {
+    public ChiNhanh(String maChiNhanh, String tenChiNhanh, String diaChi, String soDienThoai) {
         this.maChiNhanh = maChiNhanh;
         this.tenChiNhanh = tenChiNhanh;
         this.diaChi = diaChi;
+        this.soDienThoai = soDienThoai;
     }
+    
 
     public ChiNhanh(ResultSet resultSet) throws SQLException {
-        //resultSet.next(); // Di chuyển con trỏ đến dòng đầu tiên (nếu có)
         maChiNhanh = resultSet.getString("maChiNhanh");
         tenChiNhanh = resultSet.getString("tenChiNhanh");
         diaChi = resultSet.getString("diaChi");
+        soDienThoai = resultSet.getString("soDienThoai");
     }
     
     public String getMaChiNhanh() {
@@ -54,9 +57,12 @@ public class ChiNhanh {
         this.diaChi = diaChi;
     }
 
-    @Override
-    public String toString() {
-        return "ChiNhanh{" + "maChiNhanh=" + maChiNhanh + ", tenChiNhanh=" + tenChiNhanh + ", diaChi=" + diaChi + '}';
+    public String getSoDienThoai() {
+        return soDienThoai;
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+        this.soDienThoai = soDienThoai;
     }
     
 }

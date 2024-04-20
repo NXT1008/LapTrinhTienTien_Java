@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -48,21 +49,80 @@ public class NhanVienDAO {
         return list;
     }
     
-    public boolean insert(NhanVien model){
-        String query = "exec Insert_NhanVien ?,?,?,?,?,?,?,?,?,?";
+    public NhanVien findOne(String maNV){
+        NhanVien nv;
+        String query = "select * from NHANVIEN where maNhanVien = ?";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, model.getHoTenNhanVien());
-            ps.setString(2, model.getCccd());
-            ps.setDate(3, (Date) model.getNgaySinh());
-            ps.setString(4, model.getGioiTinh());
-            ps.setString(5, model.getDiaChi());
-            ps.setString(6, model.getSoDienThoai());
-            ps.setString(7, model.getChucVu());
-            ps.setBoolean(8, model.isTinhTrangLamViec());
-            ps.setString(9, model.getMaChiNhanh());
-            ps.setString(10, model.getHinhAnh());
+            ps.setString(1, maNV);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                nv = new NhanVien(rs);
+                return nv;
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return null;
+    }
+    
+    public NhanVien findByCCCD(String CCCD){
+        NhanVien nv;
+        String query = "select * from NHANVIEN where CCCD = ?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, CCCD);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                nv = new NhanVien(rs);
+                return nv;
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return null;
+    }
+    
+    public List<String> listMaNhanVien(){
+        List<String> list = new ArrayList<>();
+        String query = "select maNhanVien from NHANVIEN";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                list.add(rs.getString(1));
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return list;
+    }
+    
+    public boolean insert(NhanVien model){
+        String query = "exec Insert_NhanVien ?,?,?,?,?,?,?,?,?,?,?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, model.getMaNhanVien());
+            ps.setString(2, model.getHoTenNhanVien());
+            ps.setString(3, model.getCccd());
+            ps.setDate(4, (Date) model.getNgaySinh());
+            ps.setString(5, model.getGioiTinh());
+            ps.setString(6, model.getDiaChi());
+            ps.setString(7, model.getSoDienThoai());
+            ps.setString(8, model.getChucVu());
+            ps.setBoolean(9, model.isTinhTrangLamViec());
+            ps.setString(10, model.getMaChiNhanh());
+            ps.setString(11, model.getHinhAnh());
             ps.executeUpdate();
             conn.close();
             return true;

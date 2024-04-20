@@ -23,6 +23,10 @@ public class PhieuNhapService {
         return PhieuNhapDAO.getInstance().danhSachPhieuNhap();
     }
     
+    public PhieuNhap findOne(String maPN){
+        return PhieuNhapDAO.getInstance().findOne(maPN);
+    }
+    
     public boolean insert(PhieuNhap model){
         return PhieuNhapDAO.getInstance().insert(model);
     }

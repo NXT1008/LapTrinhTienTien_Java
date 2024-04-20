@@ -1,5 +1,7 @@
+
 package Views.Login.components;
 
+import Models.TaiKhoan;
 import Views.Login.swing.Button;
 import Views.Login.swing.MyPasswordField;
 import Views.Login.swing.MyTextField;
@@ -13,155 +15,182 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import net.miginfocom.swing.MigLayout;
 
+
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
-    public PanelLoginAndRegister(ActionListener eventRegister) {
-        initComponents();
-        
-        //Khởi tạo giao diện cho Login & Register
-        initRegisterForm(eventRegister);
-        initLoginForm();
-        
-        //Hiển thị
-        pnlLogin.setVisible(false);
-        pnlRegister.setVisible(true);
+    public TaiKhoan getUser() {
+        return user;
+    }
+
+    public String getUsernameLogin() {
+        return usernameLogin;
+    }
+
+    public String getPasswordLogin() {
+        return passwordLogin;
     }
     
-    private void initRegisterForm(ActionListener eventRegister){
-        pnlRegister.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
+    private TaiKhoan user;
+    private String usernameLogin, passwordLogin;
+    
+    public PanelLoginAndRegister(ActionListener eventRegister, ActionListener eventLogin) {
+        initComponents();
+        initRegister(eventRegister);
+        initLogin(eventLogin);
         
-        JLabel label = new JLabel("Create Account");
+        login.setVisible(true);
+        register.setVisible(false);
+    }
+
+    private void initRegister(ActionListener eventRegister){
+        register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
+        
+        JLabel label = new JLabel("Đăng Ký Tài Khoản");
         label.setFont(new Font("sansserif", 1, 30));
         label.setForeground(new Color(7, 164, 121));
-        pnlRegister.add(label);
+        register.add(label);
         
-        // txtUsername
-        MyTextField txtUser = new MyTextField();
-        txtUser.setPrefixIcon(new ImageIcon(getClass().getResource("/Views/Login/Icon/user.png")));
-        txtUser.setHint("Name");
-        pnlRegister.add(txtUser, "w 60%");
+        MyTextField tfMaNhanVien = new MyTextField();
+        tfMaNhanVien.setPrefixIcon(new ImageIcon(getClass().getResource("/Views/Login/Icon/user.png")));
+        tfMaNhanVien.setHint("Mã nhân viên");
+        register.add(tfMaNhanVien, "w 60%");
         
-        // txtEmail
-        MyTextField txtEmail = new MyTextField();
-        txtEmail.setPrefixIcon(new ImageIcon(getClass().getResource("/Views/Login/Icon/mail.png")));
-        txtEmail.setHint("Email");
-        pnlRegister.add(txtEmail, "w 60%");
+        MyTextField tfUserName = new MyTextField();
+        tfUserName.setPrefixIcon(new ImageIcon(getClass().getResource("/Views/Login/Icon/mail.png")));
+        tfUserName.setHint("Tài khoản");
+        register.add(tfUserName, "w 60%");
         
-        //txtPassword
-        MyPasswordField txtPass = new MyPasswordField();
-        txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/Views/Login/Icon/pass.png")));
-        txtPass.setHint("Password");
-        pnlRegister.add(txtPass, "w 60%");
+        MyPasswordField tfPassword = new MyPasswordField();
+        tfPassword.setPrefixIcon(new ImageIcon(getClass().getResource("/Views/Login/Icon/pass.png")));
+        tfPassword.setHint("Mật khẩu");
+        register.add(tfPassword, "w 60%");
         
-        //btnDangKy
-        Button cmd = new Button();
-        cmd.setBackground(new Color(7, 164, 121));
-        cmd.setForeground(new Color(250, 250, 250));
-        cmd.setText("SIGN UP");
-        cmd.addActionListener(eventRegister); // Thêm sự kiện cho nút Đăng ký
-        pnlRegister.add(cmd, "w 40%, h 40");
-        cmd.addActionListener(new ActionListener() {
+        Button btnRegister = new Button();
+        btnRegister.setBackground(new Color(7, 164, 121));
+        btnRegister.setForeground(new Color(250, 250, 250));
+        btnRegister.addActionListener(eventRegister);
+        btnRegister.setText("ĐĂNG KÝ");
+        register.add(btnRegister, "w 40%, h 40");
+        btnRegister.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-//                String userName = txtUser.getText().trim();
-//                String email = txtEmail.getText().trim();
-//                String password = String.valueOf(txtPass.getPassword());
-//                user = new ModelUser(0, userName, email, password);
-                    
+            public void actionPerformed(ActionEvent ae) {
+                String maNV = tfMaNhanVien.getText().trim();
+                String username = tfUserName.getText().trim();
+                String password = String.valueOf(tfPassword.getPassword());
+                user = new TaiKhoan(username, password, maNV, false);
+                clear(tfUserName, tfMaNhanVien, tfPassword);
             }
         });
     }
     
-    private void initLoginForm(){
-        pnlLogin.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
+    private void initLogin(ActionListener eventLogin){
+        login.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
         
-        JLabel label = new JLabel("Sign In");
+        JLabel label = new JLabel("Đăng Nhập");
         label.setFont(new Font("sansserif", 1, 30));
         label.setForeground(new Color(7, 164, 121));
-        pnlLogin.add(label);
+        login.add(label);
         
-        //txtEmail
-        MyTextField txtEmail = new MyTextField();
-        txtEmail.setPrefixIcon(new ImageIcon(getClass().getResource("/Views/Login/Icon/mail.png")));
-        txtEmail.setHint("Email");
-        pnlLogin.add(txtEmail, "w 60%");
+        MyTextField tfUsernameLogin = new MyTextField();
+        tfUsernameLogin.setPrefixIcon(new ImageIcon(getClass().getResource("/Views/Login/Icon/mail.png")));
+        tfUsernameLogin.setHint("Tài Khoản");
+        tfUsernameLogin.setText("admin");
+        login.add(tfUsernameLogin, "w 60%");
         
-        //txtPassword
-        MyPasswordField txtPass = new MyPasswordField();
-        txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/Views/Login/Icon/pass.png")));
-        txtPass.setHint("Password");
-        pnlLogin.add(txtPass, "w 60%");
+        MyPasswordField tfPasswordLogin = new MyPasswordField();
+        tfPasswordLogin.setPrefixIcon(new ImageIcon(getClass().getResource("/Views/Login/Icon/pass.png")));
+        tfPasswordLogin.setHint("Mật Khẩu");
+        tfPasswordLogin.setText("1");
+        login.add(tfPasswordLogin, "w 60%");
         
-         //btnForgotPass
-        JButton cmdForget = new JButton("Forgot your password ?");
+        JButton cmdForget = new JButton("Forgot your password?");
         cmdForget.setForeground(new Color(100, 100, 100));
         cmdForget.setFont(new Font("sansserif", 1, 12));
         cmdForget.setContentAreaFilled(false);
         cmdForget.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        pnlLogin.add(cmdForget);
+        login.add(cmdForget);
         
-        //btnDangNhap
         Button cmd = new Button();
         cmd.setBackground(new Color(7, 164, 121));
         cmd.setForeground(new Color(250, 250, 250));
-        cmd.setText("SIGN IN");
-        pnlLogin.add(cmd, "w 40%, h 40");
+        cmd.setText("ĐĂNG NHẬP");
+        cmd.addActionListener(eventLogin);
+        
+        login.add(cmd, "w 40%, h 40");
+        
+        cmd.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                usernameLogin = tfUsernameLogin.getText();
+                passwordLogin = String.valueOf(tfPasswordLogin.getPassword()).trim();
+                tfUsernameLogin.setText("");
+                tfPasswordLogin.setText("");
+            }
+        });
+        
+       
     }
     
+    
     public void showRegister(boolean show) {
-        if (show) {
-            pnlRegister.setVisible(true);
-            pnlLogin.setVisible(false);
+        if (!show) {
+            register.setVisible(true);
+            login.setVisible(false);
         } else {
-            pnlRegister.setVisible(false);
-            pnlLogin.setVisible(true);
+            register.setVisible(false);
+            login.setVisible(true);
         }
     }
     
+    public void clear(MyTextField tfUsername, MyTextField tfMaNV, MyPasswordField tfPasswd){
+        tfUsername.setText("");
+        tfMaNV.setText("");
+        tfPasswd.setText("");
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlLogin = new javax.swing.JPanel();
-        pnlRegister = new javax.swing.JPanel();
+        login = new javax.swing.JPanel();
+        register = new javax.swing.JPanel();
 
         setLayout(new java.awt.CardLayout());
 
-        pnlLogin.setBackground(new java.awt.Color(255, 255, 255));
+        login.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
-        pnlLogin.setLayout(pnlLoginLayout);
-        pnlLoginLayout.setHorizontalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 289, Short.MAX_VALUE)
+        javax.swing.GroupLayout loginLayout = new javax.swing.GroupLayout(login);
+        login.setLayout(loginLayout);
+        loginLayout.setHorizontalGroup(
+            loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
-        pnlLoginLayout.setVerticalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
-        );
-
-        add(pnlLogin, "card3");
-
-        pnlRegister.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnlRegisterLayout = new javax.swing.GroupLayout(pnlRegister);
-        pnlRegister.setLayout(pnlRegisterLayout);
-        pnlRegisterLayout.setHorizontalGroup(
-            pnlRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 289, Short.MAX_VALUE)
-        );
-        pnlRegisterLayout.setVerticalGroup(
-            pnlRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
+        loginLayout.setVerticalGroup(
+            loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        add(pnlRegister, "card2");
+        add(login, "card3");
+
+        register.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout registerLayout = new javax.swing.GroupLayout(register);
+        register.setLayout(registerLayout);
+        registerLayout.setHorizontalGroup(
+            registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        registerLayout.setVerticalGroup(
+            registerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        add(register, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel pnlLogin;
-    private javax.swing.JPanel pnlRegister;
+    private javax.swing.JPanel login;
+    private javax.swing.JPanel register;
     // End of variables declaration//GEN-END:variables
 }

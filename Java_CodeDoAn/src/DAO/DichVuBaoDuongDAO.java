@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DAO;
 import java.sql.*;
 import Models.DichVuBaoDuong;
 import java.util.ArrayList;
 import java.util.List;
-/**
- *
- * @author WIN 10
- */
+
 public class DichVuBaoDuongDAO {
     Connection conn = null;
     PreparedStatement ps = null;
@@ -26,7 +20,7 @@ public class DichVuBaoDuongDAO {
     
     public List<DichVuBaoDuong> danhSachDichVuBaoDuong(){
         List<DichVuBaoDuong> list = new ArrayList<>();
-        String query = "";
+        String query = "exec list_DICHVUBAODUONG";
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(query);
@@ -43,6 +37,43 @@ public class DichVuBaoDuongDAO {
         return list;
     }
     
+    public List<String> listMaBaoDuong(){
+        List<String> list = new ArrayList<>();
+        String query = "select maBaoDuong from DICHVUBAODUONG";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                list.add(rs.getString("maBaoDuong"));
+            }
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return list;
+    }
+    
+    public DichVuBaoDuong findOne(String maBD){
+        DichVuBaoDuong dvbd;
+        String query = "select * from DICHVUBAODUONG where maBaoDuong = ?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, maBD);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                dvbd = new DichVuBaoDuong(rs);
+                return dvbd;
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return null;
+    }
+    
     public boolean insert(DichVuBaoDuong model){
         String query = "exec Insert_DICHVUBAODUONG ?,?,?";
         try {
@@ -50,7 +81,7 @@ public class DichVuBaoDuongDAO {
             ps = conn.prepareStatement(query);
             ps.setString(1, model.getTenBaoDuong());
             ps.setString(2, model.getLoaiBaoDuong());
-            ps.setFloat(3,  model.getPhiBaoDuong());
+            ps.setLong(3,  model.getPhiBaoDuong());
             ps.executeUpdate();
             conn.close();
             return true;
@@ -67,7 +98,7 @@ public class DichVuBaoDuongDAO {
             ps.setString(1, model.getMaBaoDuong());
             ps.setString(2, model.getTenBaoDuong());
             ps.setString(3, model.getLoaiBaoDuong());
-            ps.setFloat(4,  model.getPhiBaoDuong());
+            ps.setLong(4,  model.getPhiBaoDuong());
             ps.executeUpdate();
             conn.close();
             return true;

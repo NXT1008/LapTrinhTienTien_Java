@@ -1,18 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Models;
 import java.sql.*;
-/**
- *
- * @author WIN 10
- */
+
 public class TaiKhoan {
     private String tenDangNhap;
     private String matKhau;
-    private String maNhanVien;
+    private String maNhanVien; // dùng để đăng ký
+    private boolean isAdmin;
 
+    public TaiKhoan(String tenDangNhap, String matKhau, String maNhanVien, boolean isAdmin) {
+        this.tenDangNhap = tenDangNhap;
+        this.matKhau = matKhau;
+        this.maNhanVien = maNhanVien;
+        this.isAdmin = isAdmin;
+    }
+    
     public TaiKhoan(ResultSet resultSet) throws SQLException {
         tenDangNhap = resultSet.getString("tenDangNhap");
         matKhau = resultSet.getString("matKhau");
@@ -42,6 +44,12 @@ public class TaiKhoan {
     public void setMaNhanVien(String maNhanVien) {
         this.maNhanVien = maNhanVien;
     }
-    
-    
+
+    public boolean isIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 }

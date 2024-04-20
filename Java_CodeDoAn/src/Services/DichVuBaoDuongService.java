@@ -26,6 +26,14 @@ public class DichVuBaoDuongService {
         return DichVuBaoDuongDAO.getInstance().danhSachDichVuBaoDuong();
     }
     
+    public List<String> listMaBaoDuong(){
+        return DichVuBaoDuongDAO.getInstance().listMaBaoDuong();
+    }
+    
+    public DichVuBaoDuong findOne(String maBD){
+        return DichVuBaoDuongDAO.getInstance().findOne(maBD);
+    }
+    
     public boolean insert(DichVuBaoDuong model){
         return DichVuBaoDuongDAO.getInstance().insert(model);
     }

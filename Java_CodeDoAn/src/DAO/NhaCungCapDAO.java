@@ -47,6 +47,44 @@ public class NhaCungCapDAO {
         return list;
     }
     
+    public List<String> listMaNhaCungCap(){
+        List<String> list = new ArrayList<>();
+        String query = "select maNhaCungCap from NHACUNGCAP";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                list.add(rs.getString(1));
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return list;
+    }
+    
+    public NhaCungCap findOne(String maNCC){
+        NhaCungCap ncc;
+        String query = "select * from NHACUNGCAP where maNhaCungCap = ?";
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, maNCC);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                ncc = new NhaCungCap(rs);
+                return ncc;
+            }
+            
+            conn.close();
+        } catch (Exception e) {
+        }
+        
+        return null;
+    }
+    
     public boolean insert(NhaCungCap model){
         String query = "exec Insert_NhaCungCap ?,?,?,?";
         try {

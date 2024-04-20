@@ -23,6 +23,14 @@ public class KhachHangService {
         return KhachHangDAO.getInstance().danhSachKhachHang();
     }
     
+    public List<String> listMaKhachHang(){
+        return KhachHangDAO.getInstance().listMaKhachHang();
+    }
+    
+    public KhachHang findOne(String maKH){
+        return KhachHangDAO.getInstance().findOne(maKH);
+    }
+    
     public boolean insert(KhachHang model){
         return KhachHangDAO.getInstance().insert(model);
     }

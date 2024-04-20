@@ -1,27 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Models;
 
 import java.util.Date;
 import java.sql.*;
 
-/**
- *
- * @author WIN 10
- */
+
 public class PhieuBaoDuong {
     private String maPhieuBaoDuong;
+    private String maBaoDuong;
     private Date ngayLapPhieu;
-    private float tongTien;
+    private long tongTien;
     private String maKhachHang;
     private String maNhanVienThucHien;
 
+    public PhieuBaoDuong(String maPhieuBaoDuong, String maBaoDuong, Date ngayLapPhieu, long tongTien, String maKhachHang, String maNhanVienThucHien) {
+        this.maPhieuBaoDuong = maPhieuBaoDuong;
+        this.maBaoDuong = maBaoDuong;
+        this.ngayLapPhieu = ngayLapPhieu;
+        this.tongTien = tongTien;
+        this.maKhachHang = maKhachHang;
+        this.maNhanVienThucHien = maNhanVienThucHien;
+    }
+    
     public PhieuBaoDuong(ResultSet resultSet) throws SQLException {
         this.maPhieuBaoDuong = resultSet.getString("maPhieuBaoDuong");
+        this.maBaoDuong = resultSet.getString("maBaoDuong");
         this.ngayLapPhieu = resultSet.getDate("ngayLapPhieu"); // Use getDate for Date type
-        this.tongTien = resultSet.getFloat("tongTien");
+        this.tongTien = resultSet.getLong("tongTien");
         this.maKhachHang = resultSet.getString("maKhachHang");
         this.maNhanVienThucHien = resultSet.getString("MaNhanVienThucHien");
     }
@@ -34,6 +39,14 @@ public class PhieuBaoDuong {
         this.maPhieuBaoDuong = maPhieuBaoDuong;
     }
 
+    public String getMaBaoDuong() {
+        return maBaoDuong;
+    }
+
+    public void setMaBaoDuong(String maBaoDuong) {
+        this.maBaoDuong = maBaoDuong;
+    }
+    
     public Date getNgayLapPhieu() {
         return ngayLapPhieu;
     }
@@ -42,11 +55,11 @@ public class PhieuBaoDuong {
         this.ngayLapPhieu = ngayLapPhieu;
     }
 
-    public float getTongTien() {
+    public long getTongTien() {
         return tongTien;
     }
 
-    public void setTongTien(float tongTien) {
+    public void setTongTien(long tongTien) {
         this.tongTien = tongTien;
     }
 
